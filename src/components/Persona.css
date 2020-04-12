@@ -1,7 +1,6 @@
 .persona {
   width: 20px;
   height: 20px;
-  background: #ff1c68;
   transform-origin: 50% 50%;
   border-radius: 45%;
 }

@@ -9,8 +9,10 @@ const MOVEMENT_DELTA = 50;
 
 
 interface PersonaProps {
+  key: number,
   position: PositionPoint,
-  transitionTime: number
+  transitionTime: number,
+  color: string
 }
 
 export class Persona extends React.Component <PersonaProps, []>{
@@ -18,24 +20,12 @@ export class Persona extends React.Component <PersonaProps, []>{
     super(props)
   }
   
-
-  getNewRandomConstrainedGradualValueForAxis(value: number, max: number, min: number, delta: number) {
-    const valueDelta = Math.random() >= 0.5 ? delta : -1 * delta;
-    let newValue = value + valueDelta;
-    if (newValue > max) {
-      return max;
-    } else if (newValue < min){
-      return min;
-    }
-    return newValue;
-  }
-  
   render() {
     return (<div>
-      <motion.div className="persona" animate={{
+      <motion.div className="persona" style  = {{backgroundColor: this.props.color}}  animate= {{
         x: this.props.position.x,
         y: this.props.position.y
-      }} transition={{ ease: "easeOut", duration: this.props.position }} />
+      }} transition={{ ease: "easeOut", duration: this.props.transitionTime }} />
     </div>);
   }
 }
