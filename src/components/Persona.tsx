@@ -1,36 +1,23 @@
 import React from 'react';
 import './Persona.css';
 import { motion } from "framer-motion";
+import { PositionPoint } from '../modules/PersonaModel';
 
-const MOVEMENT_DELTA = 1500;
+const MOVEMENT_DELTA = 50;
 
 
-interface PositionState {
-  x: number,
-  y: number
+
+
+interface PersonaProps {
+  position: PositionPoint,
+  transitionTime: number
 }
 
-interface PositionProps {
-  xMax: number,
-  yMax: number,
-  xMin: number,
-  yMin: number
-}
-
-export class Persona extends React.Component <PositionProps, PositionState>{
-
-  
-
-  constructor(props: any){
+export class Persona extends React.Component <PersonaProps, []>{
+  constructor(props: PersonaProps){
     super(props)
-    this.state = { x: 0, y : 0 };
-
-    this.startTimer = this.startTimer.bind(this)
   }
-
-  componentDidMount() {
-    this.startTimer()
-  }
+  
 
   getNewRandomConstrainedGradualValueForAxis(value: number, max: number, min: number, delta: number) {
     const valueDelta = Math.random() >= 0.5 ? delta : -1 * delta;
@@ -43,32 +30,12 @@ export class Persona extends React.Component <PositionProps, PositionState>{
     return newValue;
   }
   
-  startTimer() {
-   
-    setInterval(() => {
-    const newX = this.getNewRandomConstrainedGradualValueForAxis(
-      this.state.x, 
-      this.props.xMax, 
-      this.props.xMin,
-      MOVEMENT_DELTA);
-    const newY = this.getNewRandomConstrainedGradualValueForAxis(
-      this.state.y, 
-      this.props.yMax, 
-      this.props.yMin,
-      MOVEMENT_DELTA);
-      this.setState({
-        x: newX,
-        y: newY
-      });
-    }, 0.25);
-    console.log("start")
-  }
   render() {
     return (<div>
       <motion.div className="persona" animate={{
-        x: this.state.x,
-        y: this.state.y
-      }} transition={{ ease: "easeOut", duration: 0.25 }} />
+        x: this.props.position.x,
+        y: this.props.position.y
+      }} transition={{ ease: "easeOut", duration: this.props.position }} />
     </div>);
   }
 }
