@@ -1,0 +1,17 @@
+.dashboard {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    width: 50%;
+    padding: 0;
+    margin: 0;
+    border-style: solid;
+    background-color: bisque;
+  }
+
+  .dashboard:after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+  }

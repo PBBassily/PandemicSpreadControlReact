@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Persona } from './components/Persona';
+import { App } from './App';
 
-ReactDOM.render(<Persona />, document.getElementById('root'));
+
+ReactDOM.render(<App />, document.getElementById('root'));

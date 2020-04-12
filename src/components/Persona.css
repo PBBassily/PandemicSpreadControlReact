@@ -1,12 +1,4 @@
-body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  width: 100%;
-  padding: 0;
-  margin: 0;
-}
+
 
 .persona {
   width: 100px;
