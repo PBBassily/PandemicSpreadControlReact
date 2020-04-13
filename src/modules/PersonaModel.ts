@@ -1,8 +1,11 @@
 export class PersonaModel {
     position: PositionPoint;
+    oldPosition: PositionPoint;
     health: PersonaHealthState;
-    constructor (position : PositionPoint = defualtPosition(), health: PersonaHealthState = PersonaHealthState.SUSPIOUS) {
+    toBeInfectedNextFrame: boolean = false;
+    constructor (position : PositionPoint, health: PersonaHealthState = PersonaHealthState.SUSPIOUS) {
         this.position = position;
+        this.oldPosition = position;
         this.health = health;
     }
  }
@@ -21,11 +24,4 @@ export enum PersonaHealthState {
     SUSPIOUS,
     INFECTED, 
     RECOVERED
-}
-
-var defualtPosition: () => PositionPoint = function () {
-    return {
-        x: Math.random() * 1000 - 500,
-        y: Math.random() * 1000 - 500
-    }
 }

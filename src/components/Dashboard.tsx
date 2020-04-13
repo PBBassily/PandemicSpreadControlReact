@@ -21,13 +21,18 @@ export class Dashboard extends React.Component {
     update() {
         setInterval(() => {
             this.setState({});
-        }, 1/FPS);
+        }, 1/FPS  * 1000);
     }
   
   render() {
     const newlyDistributedPopulation = this.worldMockerEngine.getPopulationDistrubutionSnapShot()
     const personasComponents = newlyDistributedPopulation.map(function(persona, index) {
-        return <Persona key = {index} position = {persona.position} transitionTime = {1 / FPS} color = {getProperColor(persona.health)}/>;
+        return <Persona 
+        index = {index} 
+        position = {persona.position} 
+        oldPosition = { persona.oldPosition} 
+        transitionTime = {1 / FPS} 
+        color = {getProperColor(persona.health)}/>;
       });
     return (
         <div className = "dashboard">
@@ -38,24 +43,24 @@ export class Dashboard extends React.Component {
 }
 
 const POPULATION_NUMBER: number = 50;
-const FPS: number = 0.5;
+const FPS: number = 1;
 
 function generateWorldConfiguration() : WorldConfiguration {
     return {
         personaNumber: POPULATION_NUMBER,
         movementBoundry: {
             bottomRight: {
-                x: 200,
-                y: 200
+                x: 500,
+                y: 500
             },
             upperLeft: {
-                x: -200,
-                y: -200
+                x: 0,
+                y: 0
             }
         },
         FPS: FPS,
-        infectionProbability: 0.5,
-        infectionRadius: 20,
+        infectionProbability: 0.9,
+        infectionRadius: 50,
         personaMovmentDelta: 20
     };
 }
